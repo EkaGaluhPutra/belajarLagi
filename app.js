@@ -95,7 +95,13 @@
 // console.log(containerFluid.lastElementChild)
 
 // event handler javascript to handle every event in HTML element
-const btn1 = document.querySelector('button#addMessageDynamic')
+const form = document.querySelector('form#form')
+const btn = document.querySelector('button#addMessageStatic')
+const deleteBtn = document.querySelector('div#message')
+
+btn.addEventListener('click', addMessageStatic)
+form.addEventListener('submit', addMessageDynamic)
+deleteBtn.addEventListener('click', deleteMessage)
 
 function addMessageDynamic(e) {
     e.preventDefault()
@@ -116,7 +122,7 @@ function addMessageDynamic(e) {
     btn.classList.add('delete')
     btn.setAttribute('aria-label', 'delete')
 
-    let text = document.querySelector('textarea#post').value
+    let text = document.querySelector('input#post').value
     if (text) {
         console.log(text)
     } else {
@@ -135,12 +141,8 @@ function addMessageDynamic(e) {
 
     // append to container
     flexx.appendChild(article)
+
 }
-
-btn1.addEventListener('click', addMessageDynamic)
-
-// event handler javascript to handle every event in HTML element
-const btn = document.querySelector('button#addMessageStatic')
 
 function addMessageStatic(e) {
     const flexx = document.querySelector('div#message')
@@ -181,20 +183,30 @@ function addMessageStatic(e) {
     // console.log(e.shiftKey)
 }
 
-btn.addEventListener('click', addMessageStatic)
-
-const btnDelete = document.querySelectorAll('button#delete')
-btnDelete.forEach(item => {
-    item.addEventListener('click', function (e) {
-        e.preventDefault()
-        const parent = item.parentElement.parentElement.parentElement
-        let thisChild = item.parentElement.parentElement
-
-        const deletePost = confirm('Hapus Postingan ?')
-        if (deletePost) {
-            parent.removeChild(thisChild)
+function deleteMessage(e) {
+    if (e.target.classList.contains('delete')) {
+        if (confirm('Hapus postingan?')) {
+            let article = e.target.parentElement.parentElement
+            deleteBtn.removeChild(article)
         } else {
             return false
         }
-    })
-})
+    }
+}
+
+
+// another
+// const deleteBtn = document.querySelectorAll('button.delete')
+// const deleteItem = deleteBtn.forEach(item => {
+//     item.addEventListener('click', function (e) {
+//         const parent = item.parentElement.parentElement.parentElement
+//         let thisChild = item.parentElement.parentElement
+
+//         const deletePost = confirm('Hapus Postingan ?')
+//         if (deletePost) {
+//             parent.removeChild(thisChild)
+//         } else {
+//             return false
+//         }
+//     })
+// })
