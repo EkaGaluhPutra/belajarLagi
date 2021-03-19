@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: ghostwhite;
+}
+
+.color {
+    background-color: red;
+}
+
+.section {
+    padding: 10px;
+    margin: 0;
+}
+
+.message {
+    margin: 0 5px;
+}
+
+.flexx {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.card {
+    margin: 5px;
+}
+
+.card-flexx{
+    flex: 1 250px;
+}
+
+article.message {
+    flex: 1 250px;
+}
+
+@media (max-width: 800px) {
+    .flexx {
+        flex-flow: column;
+    }
+    .card-flexx {
+        flex: 1;
+    }
+    article.message {
+        flex: 1;
+    }
+}
